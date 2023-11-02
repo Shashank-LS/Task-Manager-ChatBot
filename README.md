@@ -1,4 +1,5 @@
 #Task Manager Bot
+
 Task Manager Bot is a Java application built using Swing for the graphical user interface and JDBC for database connectivity. This application allows users to manage a to-do list, perform various tasks, and interact with a chatbot for task-related operations.
 
 #Getting Started
