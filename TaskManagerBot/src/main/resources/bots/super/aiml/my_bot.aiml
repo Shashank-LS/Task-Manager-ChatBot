@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+<!-- File: my_bot.aiml -->
+<!-- Author: Dr. Richard S. Wallace -->
+<!-- Last modified: November 02, 2023 -->
+<!--  -->
+<!-- This AIML file is part of the SUPER 0.0.4 chat bot knowledge base. -->
+<!--  -->
+<!-- The SUPER brain is Copyright &copy; 2023 by ALICE AI Foundation. -->
+<!--  -->
+<!-- The SUPER brain is released under the terms of the GNU Lesser General -->
+<!-- Public License, as published by the Free Software Foundation. -->
+<!--  -->
+<!-- This file is distributed WITHOUT ANY WARRANTY; without even the  -->
+<!-- implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.   -->
+<!--  -->
+<!-- For more information see http://www.alicebot.org -->
+<category><pattern>HI</pattern>
+<template>Hello! How can I assist you today?</template>
+</category>
+<category><pattern>ADD TASK</pattern>
+<template>Please enter the task you want to add:</template>
+</category>
+<category><pattern>ADD TASK *</pattern>
+<template><think>
+                <set name="task"><star/></set>
+            </think>
+            Task added with description: <star/></template>
+</category>
+<category><pattern>SHOW LIST</pattern>
+<template><think>
+                <set name="taskList"><java>com.todo.DatabaseManager.fetchTaskList()</java></set>
+            </think>
+            <condition name="taskList">
+                <li>Here is your task list:</li>
+                <li><get name="taskList"/></li>
+            </condition>
+            <li>Your task list is empty.</li></template>
+</category>
+<category><pattern>MARK TASK AS COMPLETE</pattern>
+<template>Please enter the task number you want to mark as complete:</template>
+</category>
+<category><pattern>MARK TASK AS COMPLETE *</pattern>
+<template><think>
+                <set name="taskNumber"><star/></set>
+            </think>
+            Task <get name="taskNumber"/> has been marked as complete.</template>
+</category>
+<category><pattern>DELETE TASK</pattern>
+<template><think>
+                <set name="taskNumber"><star/></set>
+            </think>
+            Task <get name="taskNumber"/> has been deleted.</template>
+</category>
+<category><pattern>SET DUE DATE FOR TASK AS *</pattern>
+<template><think>
+                <set name="taskNumber"><star index="1"/></set>
+                <set name="dueDate"><star index="2"/></set>
+            </think>
+            Due date for task <get name="taskNumber"/> set to <get name="dueDate"/>.</template>
+</category>
+<category><pattern>ADD PRIORITY TASK</pattern>
+<template><think>
+                <set name="priorityTask"><star/></set>
+            </think>
+            Priority task "<get name="priorityTask"/>" added. Is there anything else?</template>
+</category>
+<category><pattern>EXIT</pattern>
+<template>Goodbye! Have a great day.</template>
+</category>
+<category><pattern>ADD TASK SUCCESS *</pattern>
+<template>Task added with ID <star/>. (Task number)</template>
+</category>
+<category><pattern>CLEAR TASK</pattern>
+<template><think>
+                    <java>com.todo.TaskManagerBot.clearTasks()</java>
+                </think>
+                All tasks have been cleared, and task IDs have been reset.</template>
+</category>
+<category><pattern>*</pattern>
+<template>I'm sorry, I don't understand that command. Please try again.</template>
+</category>
+</aiml>

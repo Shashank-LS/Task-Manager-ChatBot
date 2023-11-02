@@ -1,0 +1,13 @@
+0,HI,*,*,Hello! How can I assist you today?,my_bot.aiml
+0,ADD TASK,*,*,Please enter the task you want to add:,my_bot.aiml
+0,ADD TASK *,*,*,<think>#Newline                <set name="task"><star/></set>#Newline            </think>#Newline            Task added with description: <star/>,my_bot.aiml
+0,SHOW LIST,*,*,<think>#Newline                <set name="taskList"><java>com.todo.DatabaseManager.fetchTaskList()</java></set>#Newline            </think>#Newline            <condition name="taskList">#Newline                <li>Here is your task list:</li>#Newline                <li><get name="taskList"/></li>#Newline            </condition>#Newline            <li>Your task list is empty.</li>,my_bot.aiml
+0,MARK TASK AS COMPLETE,*,*,Please enter the task number you want to mark as complete:,my_bot.aiml
+0,MARK TASK AS COMPLETE *,*,*,<think>#Newline                <set name="taskNumber"><star/></set>#Newline            </think>#Newline            Task <get name="taskNumber"/> has been marked as complete.,my_bot.aiml
+0,DELETE TASK,*,*,<think>#Newline                <set name="taskNumber"><star/></set>#Newline            </think>#Newline            Task <get name="taskNumber"/> has been deleted.,my_bot.aiml
+0,SET DUE DATE FOR TASK AS *,*,*,<think>#Newline                <set name="taskNumber"><star index="1"/></set>#Newline                <set name="dueDate"><star index="2"/></set>#Newline            </think>#Newline            Due date for task <get name="taskNumber"/> set to <get name="dueDate"/>.,my_bot.aiml
+0,ADD PRIORITY TASK,*,*,<think>#Newline                <set name="priorityTask"><star/></set>#Newline            </think>#Newline            Priority task "<get name="priorityTask"/>" added. Is there anything else?,my_bot.aiml
+0,EXIT,*,*,Goodbye! Have a great day.,my_bot.aiml
+0,ADD TASK SUCCESS *,*,*,Task added with ID <star/>. (Task number),my_bot.aiml
+0,CLEAR TASK,*,*,<think>#Newline                    <java>com.todo.TaskManagerBot.clearTasks()</java>#Newline                </think>#Newline                All tasks have been cleared#Comma and task IDs have been reset.,my_bot.aiml
+0,*,*,*,I'm sorry#Comma I don't understand that command. Please try again.,my_bot.aiml
